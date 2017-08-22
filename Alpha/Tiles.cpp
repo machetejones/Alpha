@@ -27,6 +27,7 @@ tile::tile(){
 	tile_ID = 0;
 	clip_box = { 0, 0, 0, 0 };
 	next_tile_x = NULL; next_tile_y = NULL;
+	prev_tile_x = NULL; prev_tile_y = NULL;
 }
 tile::~tile(){
 
@@ -85,6 +86,10 @@ void map::initialize(){
 		}
 	}
 }
+int map::get_value(int x, int y){
+	return data[x][y];
+}
+
 int map::check_neighbors(int x, int y){
 	int count = 0;
 	for (int i = -1; i < 2; i++){

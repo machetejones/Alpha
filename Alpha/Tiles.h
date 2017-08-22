@@ -12,7 +12,7 @@
 #include <cstdlib>
 
 const int	TILE_WIDTH = 32, TILE_HEIGHT = 32,		//in pixels
-			MAP_WIDTH = 100, MAP_HEIGHT = 100,		//in chunks
+			MAP_WIDTH = 50, MAP_HEIGHT = 50,		//in chunks
 			IS_WALL = 47,							//threshold to be a wall
 			DEATH_LIMIT = 3,						
 			BIRTH_LIMIT = 4,
@@ -65,6 +65,7 @@ public:
 	void initialize();
 	void to_file();
 	int check_neighbors(int, int);
+	int get_value(int, int);
 	void simulate();
 private:
 	int data[MAP_WIDTH][MAP_HEIGHT];

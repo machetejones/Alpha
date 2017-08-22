@@ -28,14 +28,14 @@ int main(int argc, char* args[])
 	SDL_Event e;
 	SDL_Rect camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 
-	//map newmap;
-	//newmap.initialize();
-	//newmap.simulate();
-	//newmap.to_file();
+	map newmap;
+	newmap.initialize();
+	newmap.simulate();
+	newmap.to_file();
 
-	//texture* tileset = new texture(renderer, "Images/tiles.png");
+	texture* tileset = new texture(renderer, "Images/tiles.png");
 	texture* manset = new texture(renderer, "Images/manguy.png");
-	//spritesheet tilesheet(tileset);
+	spritesheet tilesheet(tileset);
 	spritesheet mansheet(manset);
 
 	bool quit = false;
@@ -53,10 +53,13 @@ int main(int argc, char* args[])
 		// render things
 		SDL_RenderClear(renderer);
 
-		//tilesheet.draw(0, 0, 0, renderer, camera);
-		//tilesheet.draw(1, 32, 0, renderer, camera);
-		//tilesheet.draw(2, 64, 0, renderer, camera);
-		mansheet.draw(10, 10, 0, renderer, camera);
+		for (int height = 0; height < MAP_HEIGHT; height++){
+			for (int width = 0; width < MAP_WIDTH; width++){
+				tilesheet.draw(newmap.get_value(width, height), (TILE_WIDTH*width), (TILE_HEIGHT*height), renderer, camera);
+			}
+		}
+		
+		mansheet.draw(0, 0, 0, renderer, camera);
 		SDL_RenderPresent(renderer);
 	}
 	close();
